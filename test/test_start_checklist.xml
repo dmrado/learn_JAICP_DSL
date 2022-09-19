@@ -1,0 +1,114 @@
+<test>
+    <test-case id="StartCheckList">
+        <dateTime>2022-07-14 12:00:00</dateTime>
+        <rawRequest>
+            {   
+                "update_id": 717132698,
+                "message": { 
+                    "message_id": 7695,
+                    "from": { 
+                        "id": 111,
+                        "is_bot": false,
+                        "first_name": "Ivan",
+                        "last_name": "Ivanov",
+                        "username": "IvanIvanov",
+                        "language_code": "ru"
+                    },
+                    "chat": {
+                        "id": 111,
+                        "first_name": "Ivan",
+                        "last_name": "Ivanov",
+                        "username": "IvanIvanov",
+                        "type": "private" 
+                    },
+                    "date": 1640008387,
+                    "text": "/start cleaning-checklist",
+                    "entities": [{"offset": 0,"length": 6,"type": "bot_command"}]
+                },
+                "startProcessingTime": 3962052082572219
+            }
+        </rawRequest>
+        <q>/start cleaning-checklist</q>
+        <a>В течении дня с 11-00 до 18-00 необходимо выполнить 6 задач чистоты. Сегодя надо заняться кофемашиной, кофемолкой и витриной с образцами. Нажми кнопку старт</a>
+        
+        <rawRequest>
+            {   
+                "update_id": 717132698,
+                "callback_query": { 
+                    "data": "shiftStep"
+                },
+                "startProcessingTime": 3962052082572219
+            }
+        </rawRequest>
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": "group_id", 
+                    "text": "Сотрудник Ivan @IvanIvanov занимается чек-листом чистоты за четверг" 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 21
+                    }
+                }
+            </response>
+        </mockData>
+        
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": 111, 
+                    "text": "1. Сверху кофемашины\n· Убрать все сверху кофемашины, протереть под решетками и сами решетки\n· Сделай фото чистой верхней поверхности" 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 11
+                    }
+                }
+            </response>
+        </mockData>
+        
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": 111, 
+                    "text": "2. Столешницы под кофейным оборудованием\n· Убрать с поверхности кофемолку, сиропы, все коврики, контейнеры и прочее\n· Помыть ·столешницу под кофемашиной ·и кофемолкой тщательно, протереть провода и водоводы идущие от кофемашины влажной тряпкой\n· Сделай фото чистой рабочей поверхности ДО расстановки назад кофемолки, сиропов и ковриков и тд" 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 12
+                    }
+                }
+            </response>
+        </mockData>
+        
+        <event>telegramCallbackQuery</event>
+        <timeoutReply targetState="/Checklist/LoopBySteps/timeout" interval="1800"/>
+        
+        <requestData>
+            {
+                "eventData": [
+                    {"url":"https://i.insider.com/61d1c0e2aa741500193b2d18?width=700"}
+                ]
+            }
+        </requestData>
+        
+        <event>fileEvent</event>
+        <timeoutReply targetState="/Checklist/LoopBySteps" interval="3"/>
+        <timeout/>
+        
+        
+        <timeoutReply targetState="/Checklist/LoopBySteps/timeout" interval="1800"/>
+        
+        
+    </test-case>
+</test>    

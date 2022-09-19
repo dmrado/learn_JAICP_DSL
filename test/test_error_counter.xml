@@ -1,0 +1,91 @@
+<test>
+    <test-case id='ErrorCounterInChecklistStart'>
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": "group_id", 
+                    "text": "У сотрудника Ivan @IvanIvanov сложность с чек-листом чистоты." 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 21
+                    }
+                }
+            </response>
+        </mockData>
+        <context var="client">
+          {
+            "name": "Ivan",
+            "username": "@IvanIvanov"
+          }
+        </context>
+        <context var="session">
+          {
+              "ErrorCounter": 0,
+              "checklistType": "Monday"
+          }
+        </context>
+        <state>Checklist/Start</state>
+        
+        <q>ку</q>
+        <a>Я не понял. Вы сказали: ку. Начните пожалуйста выполнять чек-лист.</a>
+        <a>В течении дня с 11-00 до 18-00 необходимо выполнить 5 задач чистоты. Сегодня надо заняться холодильниками. · Нажми кнопку старт</a>
+        
+        <q>ку ку</q>
+        <a>Я не понял. Вы сказали: ку ку. Начните пожалуйста выполнять чек-лист.</a>
+        <a>В течении дня с 11-00 до 18-00 необходимо выполнить 5 задач чистоты. Сегодня надо заняться холодильниками. · Нажми кнопку старт</a>
+        
+        <q>ку ку ку</q>
+        <a>Я не понял. Вы сказали: ку ку ку. Начните пожалуйста выполнять чек-лист.</a>
+        <a>В течении дня с 11-00 до 18-00 необходимо выполнить 5 задач чистоты. Сегодня надо заняться холодильниками. · Нажми кнопку старт</a>
+        
+        <q>ку ку ку ку</q>
+        <a>Я не понял. Вы сказали: ку ку ку ку. Начните пожалуйста выполнять чек-лист.</a>
+        <a>В течении дня с 11-00 до 18-00 необходимо выполнить 5 задач чистоты. Сегодня надо заняться холодильниками. · Нажми кнопку старт</a>
+    </test-case>
+    
+    
+    <test-case id='ErrorCounterInChecklistLoopByStep'>
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": "group_id", 
+                    "text": "У сотрудника Ivan @IvanIvanov сложность с чек-листом чистоты с пунктом 3. Внутри холодильника" 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 21
+                    }
+                }
+            </response>
+        </mockData>
+        <context var="client">
+          {
+            "name": "Ivan",
+            "username": "@IvanIvanov"
+          }
+        </context>
+        <context var="session">
+          {
+              "ErrorCounter": 0,
+              "checklistType": "Monday",
+              "stepNumber": 2
+          }
+        </context>
+        <state>Checklist/LoopBySteps</state>
+        
+        <q>ку</q>
+        <timeoutReply targetState="/Checklist/LoopBySteps/timeout" interval="1800"/>
+        
+        <q>ку ку</q>
+        <timeoutReply targetState="/Checklist/LoopBySteps/timeout" interval="1800"/>
+        
+        <q>ку ку ку</q>
+    </test-case>
+</test>

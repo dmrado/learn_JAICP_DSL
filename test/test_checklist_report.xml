@@ -1,0 +1,34 @@
+<test>
+    <test-case id='ErrorWhenUserSendSecondFile'>
+        <dateTime>2022-07-11 04:10:00</dateTime>
+        <context var="client">
+          {
+            "name": "Ivan",
+            "username": "@IvanIvanov",
+            "report": [],
+            "amountStartTimeInMilliseconds": 1657522800000
+          }
+        </context>
+        <context var="session">
+          {
+              "ErrorCounter": 0,
+              "checklistType": "Monday",
+              "stepNumber": 4
+          }
+        </context>
+        <requestData>
+            {
+                "eventData": [
+                    {"url":"https://i.insider.com/61d1c0e2aa741500193b2d18?width=700"}
+                ]
+            }
+        </requestData>
+        <state>Checklist/LoopBySteps</state>
+        <event>fileEvent</event>
+        <timeoutReply targetState="/Checklist/LoopBySteps" interval="3"/>
+        <timeout/>
+        <a>Задачи чистоты понедельника выполнены!</a>
+        
+        
+    </test-case>
+</test>

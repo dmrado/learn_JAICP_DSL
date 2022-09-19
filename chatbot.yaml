@@ -1,0 +1,39 @@
+# Подробнее о всех параметрах можно прочитать тут:
+# https://help.just-ai.com/docs/ru/common/bot_structure/configuration_file
+
+# Поле задает имя бота, которое будет использовано, например, в сообщениях о публикации бота в канал. Если поле отсутствует, в качестве имени используется системное название проекта.
+name: zb-cailapub
+
+# Поле используется для указания файла, с которого начинается загрузка сценария чат-бота при публикации. 
+# Файл должен находиться в папке src и обычно называется main.sc или entryPoint.sc.
+entryPoint: main.sc
+
+# Поле задает версию диалогового движка бота.
+# Движок второй версии v2 позволяет использовать для понимания естественного языка (NLU) сервис CAILA. Это рекомендуемое значение поля для всех новых проектов.
+botEngine: v2
+
+# Поле задает язык, на котором общается бот. Значение поля должно быть ISO-кодом нужного языка.
+language: ru
+
+
+# Секция injector позволяет задать параметры конфигурации чат-бота. Заданные параметры будут доступны в скриптах чат-бота через переменную $injector.
+injector:
+    group_chat_id: "-603050690"
+    Timeout: "30 min"
+    bot_name: "biorobotsBot"
+    bot_token: "5422022009:AAGQHvwMZ5PEqEt3OvV_3azrLVsonUEaZ3M"
+    time_of_cleaning_checklist: "17:40:00"
+
+# Пороговые значения классификатора
+# Подробнее: https://help.just-ai.com/docs/ru/common/bot_structure/configuration_file#porogovie-znacheniya-klassifikatora
+sts:
+    noMatchThreshold: 0.2
+caila:
+    noMatchThreshold: 0.2
+
+
+# Секция messages.onError позволяет задать текст сообщения, которое бот отправит при возникновении какой-либо ошибки.
+# Подробнее: https://help.just-ai.com/docs/ru/common/bot_structure/configuration_file#soobscheniya-ob-oshibkah
+messages:
+    onError: 
+        defaultMessage: Ой, кажется, что-то пошло не так.

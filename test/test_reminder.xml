@@ -1,0 +1,30 @@
+<test>
+    <test-case id="reminderEvent">
+        <mockData>
+            <query method="post">https://api.telegram.org/bot5591314972:AAEOV03k1yx17GvjRhLyAqFpmb7P9lShm4k/sendMessage</query>
+            <body>
+                {
+                    "chat_id": "group_id", 
+                    "text": "Для запуска чек-листа Задачи чистоты  - перейдите поссылке https://t.me/bot_name?start=cleaning-checklist" 
+                }
+            </body>
+            <response type="json" status="200">
+                {
+                    "result": {
+                        "message_id": 21
+                    }
+                }
+            </response>
+        </mockData>
+        <rawRequest>
+            {   
+                "eventData": { 
+                    "text": "Для запуска чек-листа Задачи чистоты  - перейдите поссылке https://t.me/bot_name?start=cleaning-checklist"
+                }
+            }
+        </rawRequest>
+        <event>reminderEvent</event>
+        
+        
+    </test-case>
+</test>
